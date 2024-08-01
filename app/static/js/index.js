@@ -1,3 +1,9 @@
+const loginSignupBtn = document.getElementById("login-signup");
+
+loginSignupBtn.addEventListener("click", function () {
+  window.location.href='login'
+})
+
 const nextBtn = document.getElementById("next-airing");
 const previousBtn = document.getElementById("previous-airing");
 const airingNowDiv = document.getElementById("airing-now-container");

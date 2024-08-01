@@ -6,6 +6,7 @@ body {
 #navbar {
     padding: 10px;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     position: fixed;
     top: 0;
@@ -17,7 +18,7 @@ body {
 }
 
 #name-header {
-    font-size: 30px;
+    font-size: 20px;
     margin: 6px 5px;
     float: left;
     font-family: 'Mochiy Pop One';
@@ -27,6 +28,7 @@ body {
 #input-box {
     font-size: 20px;
     padding: 10px;
+    height: 45px;
     margin: 0px 10px;
     width: 497px;
     background-color: rgb(52, 52, 52);
@@ -38,10 +40,23 @@ body {
 }
 
 #search-button {
-    font-size: 30px;
+    font-size: 20px;
     padding: 10px;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
+    font-family: 'Quicksand';
+    background-color: rgb(20, 20, 20);
+    color: white;
+}
+
+#login-signup {
+    font-size: 20px;
+    padding: 10px;
+
+    border-radius: 5px;
+    border: 2px solid white;
+    ;
     cursor: pointer;
     font-family: 'Quicksand';
     background-color: rgb(20, 20, 20);
@@ -168,7 +183,7 @@ body {
 #top-anime-header,
 #anime-movie-header {
     font-family: 'Quicksand';
-    font-size: 35px;
+    font-size: 20px;
     margin-left: 20px;
 }
 
@@ -244,7 +259,7 @@ body {
 }
 
 #title-table {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 550;
     margin: 15px;
 }
@@ -385,7 +400,10 @@ body {
     transition: 0.5s;
 }
 
-.anime-image, .image-div, #main-image, #main-image-div {
+.anime-image,
+.image-div,
+#main-image,
+#main-image-div {
     width: 400px;
     height: fit-content;
     border-radius: 10px;

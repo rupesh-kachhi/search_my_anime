@@ -139,7 +139,11 @@ def index_three(request, search_query):
         return JsonResponse(data)
     else:
         print(f"Error: {response.status_code}")
-            
 
+def login(request):
+    return render(request,'account/login.html')
+
+def signup(request):
+    return render(request,'account/signup.html')
         
     

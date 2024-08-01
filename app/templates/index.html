@@ -1,45 +1,53 @@
 <html>
+
 <head>
     {% load static %}
     <title>
         SearchMyAnime
     </title>
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static " ico\apple-touch-icon.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static " ico\favicon-32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static " ico\favicon-16x16.png" %}">
-    <link rel="manifest" href="{% static " ico\site.webmanifest" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'ico\apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'ico\favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'ico\favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'ico\site.webmanifest' %}">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Mochiy+Pop+One&display=swap"
+        rel="stylesheet">
 </head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Mochiy+Pop+One&display=swap"
-    rel="stylesheet">
 
 <body>
     <center>
         <div id="navbar">
-            <a href={% url 'home' %}><span id="name-header"><span style="color: #ffd166;">SearchMy</span>Anime</span></a>
-            <input id="input-box" placeholder="Search Anime">
-            <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div>
+                <a href={% url 'home' %}><span id="name-header"><span
+                            style="color: #ffd166;">SearchMy</span>Anime</span></a>
+                <input id="input-box" placeholder="Search Anime">
+                <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div>
+                <button id="login-signup" >Login/Signup</button>
+            </div>
         </div>
         <div id="container">
+            
         </div>
+        <div id="login-signup-content"></div>
 
         <div id="homepage-div">
             <div class="header-and-buttons">
-                <h1 id="currently-airing-header"><i class="fa-solid fa-bars-progress" style="color: lime;"></i>&nbsp;&nbsp;THIS
+                <h1 id="currently-airing-header"><i class="fa-solid fa-bars-progress"
+                        style="color: lime;"></i>&nbsp;&nbsp;THIS
                     SEASON</h1>
                 <div class="scroll-buttons">
-                    <button class="scroll-buttons" id="previous-airing"><i
-                        class="fa-solid fa-arrow-left"></i></button>
-                    <button class="scroll-buttons" id="next-airing"><i
-                        class="fa-solid fa-arrow-right"></i></button>
+                    <button class="scroll-buttons" id="previous-airing"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="scroll-buttons" id="next-airing"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="airing-now-container">
@@ -50,22 +58,24 @@
                         <p class="anime-title">{{airing_now_anime.node.title}}</p>
                         <table class="airing-now-details-table">
                             <tr>
-                                <td><i class="fa-solid fa-star" style="color: gold"></i>&nbsp;{{airing_now_anime.node.mean}}</td>
+                                <td><i class="fa-solid fa-star"
+                                        style="color: gold"></i>&nbsp;{{airing_now_anime.node.mean}}</td>
                             </tr>
                         </table>
                     </div>
                 </a>
                 {% endfor %}
             </div>
-              
+
             <div class="header-and-buttons">
-                <h1 id="popular-anime-header"><i class="fa-solid fa-fire" style="color: red"></i>&nbsp;&nbsp;POPULAR ANIME
+                <h1 id="popular-anime-header"><i class="fa-solid fa-fire" style="color: red"></i>&nbsp;&nbsp;POPULAR
+                    ANIME
                 </h1>
                 <div class="scroll-buttons">
                     <button class="scroll-buttons" id="previous-popular-anime"><i
-                        class="fa-solid fa-arrow-left"></i></button>
+                            class="fa-solid fa-arrow-left"></i></button>
                     <button class="scroll-buttons" id="next-popular-anime"><i
-                        class="fa-solid fa-arrow-right"></i></button>
+                            class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="popular-anime-container">
@@ -76,22 +86,23 @@
                         <p class="anime-title">{{popular_anime.node.title}}</p>
                         <table class="airing-now-details-table">
                             <tr>
-                                <td><i class="fa-solid fa-star" style="color: gold"></i>&nbsp;{{popular_anime.node.mean}}</td>
+                                <td><i class="fa-solid fa-star"
+                                        style="color: gold"></i>&nbsp;{{popular_anime.node.mean}}</td>
                             </tr>
                         </table>
-                </div>
+                    </div>
                 </a>
                 {% endfor %}
             </div>
 
             <div class="header-and-buttons">
-                <h1 id="top-anime-header"><i class="fa-solid fa-ranking-star" style="color: gold;"></i>&nbsp;&nbsp;TOP ANIME
+                <h1 id="top-anime-header"><i class="fa-solid fa-ranking-star" style="color: gold;"></i>&nbsp;&nbsp;TOP
+                    ANIME
                 </h1>
                 <div class="scroll-buttons">
                     <button class="scroll-buttons" id="previous-top-anime"><i
-                        class="fa-solid fa-arrow-left"></i></button>
-                    <button class="scroll-buttons" id="next-top-anime"><i
-                        class="fa-solid fa-arrow-right"></i></button>
+                            class="fa-solid fa-arrow-left"></i></button>
+                    <button class="scroll-buttons" id="next-top-anime"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="top-anime-container">
@@ -102,21 +113,23 @@
                         <p class="anime-title">{{top_anime.node.title}}</p>
                         <table class="airing-now-details-table">
                             <tr>
-                                <td><i class="fa-solid fa-star" style="color: gold"></i>&nbsp;{{top_anime.node.mean}}</td>
+                                <td><i class="fa-solid fa-star" style="color: gold"></i>&nbsp;{{top_anime.node.mean}}
+                                </td>
                             </tr>
                         </table>
-                </div>
+                    </div>
                 </a>
                 {% endfor %}
             </div>
             <div class="header-and-buttons">
-                <h1 id="anime-movie-header"><i class="fa-solid fa-film" style="color: purple;"></i>&nbsp;&nbsp;TOP ANIME MOVIES
+                <h1 id="anime-movie-header"><i class="fa-solid fa-film" style="color: purple;"></i>&nbsp;&nbsp;TOP ANIME
+                    MOVIES
                 </h1>
                 <div class="scroll-buttons">
                     <button class="scroll-buttons" id="previous-anime-movie"><i
-                        class="fa-solid fa-arrow-left"></i></button>
+                            class="fa-solid fa-arrow-left"></i></button>
                     <button class="scroll-buttons" id="next-anime-movie"><i
-                        class="fa-solid fa-arrow-right"></i></button>
+                            class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
             <div id="anime-movie-container">
@@ -127,15 +140,17 @@
                         <p class="anime-title">{{anime_movie.node.title}}</p>
                         <table class="airing-now-details-table">
                             <tr>
-                                <td><i class="fa-solid fa-star" style="color: gold"></i>&nbsp;{{anime_movie.node.mean}}</td>
+                                <td><i class="fa-solid fa-star" style="color: gold"></i>&nbsp;{{anime_movie.node.mean}}
+                                </td>
                             </tr>
                         </table>
-                </div>
+                    </div>
                 </a>
                 {% endfor %}
             </div>
         </div>
     </center>
 </body>
-<script src={% static 'js/index.js'%}></script>
+<script src={% static 'js/index.js' %}></script>
+
 </html>
