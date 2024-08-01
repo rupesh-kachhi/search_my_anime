@@ -3,6 +3,9 @@ import requests
 from datetime import datetime
 import math
 from django.conf import settings
+import pyrebase
+from django.contrib import auth
+
 
 SECRET_KEY = settings.SECRET_KEY
 def index(request):
@@ -128,7 +131,13 @@ def index_two(request, anime_id):
         'season': season,
         'rating': rating,
     }
-    return render(request, 'anime-view.html', context)
+    try:
+        idToken = request.session['uid']
+        user= fireAuth.get_account_info(idToken)
+        name = database.child("users").child(user).child("details").child("name").get()
+    except:
+        return render(request, 'anime-view.html', context)
+    return render(request, 'anime-view.html', context,{"name":name})
 
 def index_three(request, search_query):
     from django.http import JsonResponse
@@ -145,5 +154,43 @@ def login(request):
 
 def signup(request):
     return render(request,'account/signup.html')
-        
-    
+
+
+firebaseConfig = {
+ "add you config":"here like this"
+}
+firebase = pyrebase.initialize_app(firebaseConfig)
+fireAuth = firebase.auth()
+database = firebase.database()     
+
+def postSignIn(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    try:
+        user = fireAuth.sign_in_with_email_and_password(email,password)
+    except:
+        message = "invalid cred"
+        return render(request,'account/login.html',{"message":message})
+    session_id = user['idToken']
+    request.session['uid']=str(session_id)
+    return index(request)
+
+def logout(request):
+    auth.logout
+    return index(request)
+
+
+def postSignUp(request):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    try:
+        user = fireAuth.create_user_with_email_and_password(email,password)
+        uid = user['localId']
+        data= {"name":name,"status":"1","date":datetime.now()}
+        database.child("users").child(uid).child("details").set(data)
+        fireAuth.send_email_verification(user['idToken'])
+    except:
+        message = user
+        return render(request,'account/signup.html',{"message":message})
+

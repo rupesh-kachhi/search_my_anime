@@ -1,3 +1,8 @@
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,11 +30,12 @@
 <body>
     <div class="container">
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="/postSignIn" method="post">
+                {% csrf_token %}
                 <h1>Sign In</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button id="login">Sign In</button>
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <button type="submit" id="login">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
