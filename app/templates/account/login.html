@@ -25,7 +25,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Mochiy+Pop+One&display=swap"
             rel="stylesheet">
-        <script src="{% static 'js/login.js' %}" defer></script>
     </head>
 <body>
     <div class="container">
@@ -42,7 +41,7 @@
             <div class="overlay">
                 <div class="overlay-panel overlay-right">
                     <p>If you don't have a </br> account please Sign Up</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <button class="ghost" onclick="location.href='{% url 'signup' %}'" id="signUp">Sign Up</button>
                 </div>
             </div>
         </div>

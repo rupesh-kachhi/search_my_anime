@@ -1,4 +1,5 @@
 <html>
+
 <head>
     {% load static %}
     <title>
@@ -13,26 +14,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Mochiy+Pop+One&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
 </head>
 
 
 <body>
+
     <center>
         <div id="navbar">
-            <div>
+            <div style="display: flex;">
                 <a href={% url 'home' %}><span id="name-header"><span
                             style="color: #ffd166;">SearchMy</span>Anime</span></a>
                 <input id="input-box" placeholder="Search Anime">
                 <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
+
             <div>
-                <button id="login-signup">Login/Signup</button>
+                <div>
+                    {% if displayName %}
+                    <i id="dispName">{{ displayName }}</i>
+                    <button id="logout" onclick="location.href='{% url 'lgout' %}'">Logout</button>
+                    {% else %}
+                    <button id="login-signup" onclick="location.href='{% url 'login' %}'">Login/Signup</button>
+                    {% endif %}
+                </div>
             </div>
         </div>
         <div id="container">
@@ -59,9 +69,9 @@
                     </tr>
                 </table>
                 <div id="genre-div">
-                        {% for genre in anime_data.genres %}
-                        <span class="genre-sub-div">{{genre.name}}</span>
-                        {% endfor %}
+                    {% for genre in anime_data.genres %}
+                    <span class="genre-sub-div">{{genre.name}}</span>
+                    {% endfor %}
                 </div>
             </div>
             <div id="anime-outermost-details-div">
@@ -74,7 +84,7 @@
                             </div>
                             {% for picture in anime_data.pictures %}
                             <div class-"image-div">
-                            <img src={{picture.large}} class="anime-image">
+                                <img src={{picture.large}} class="anime-image">
                             </div>
                             {% endfor %}
                         </div>
@@ -86,15 +96,18 @@
                             <table id="anime-stats-table">
                                 <tr>
                                     <td>Score:</td>
-                                    <td><i class="fa-solid fa-star" style="color:gold"></i>&nbsp;{{anime_data.mean}} ({{anime_data.num_scoring_users}})</td>
+                                    <td><i class="fa-solid fa-star" style="color:gold"></i>&nbsp;{{anime_data.mean}}
+                                        ({{anime_data.num_scoring_users}})</td>
                                 </tr>
                                 <tr>
                                     <td>Popularity:</td>
-                                    <td><i class="fa-solid fa-heart" style="color:red"></i>&nbsp;{{anime_data.popularity}}</td>
+                                    <td><i class="fa-solid fa-heart"
+                                            style="color:red"></i>&nbsp;{{anime_data.popularity}}</td>
                                 </tr>
                                 <tr>
                                     <td>Rank:</td>
-                                    <td><i class="fa-solid fa-chart-simple" style="color:lightgreen"></i>&nbsp;{{anime_data.rank}}</td>
+                                    <td><i class="fa-solid fa-chart-simple"
+                                            style="color:lightgreen"></i>&nbsp;{{anime_data.rank}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -120,7 +133,8 @@
                             </tr>
                             <tr>
                                 <td>Broadcast:</td>
-                                <td><i class="fa-solid fa-tower-broadcast"></i>&nbsp;{{anime_data.start_date}} to {{anime_data.end_date}}</td>
+                                <td><i class="fa-solid fa-tower-broadcast"></i>&nbsp;{{anime_data.start_date}} to
+                                    {{anime_data.end_date}}</td>
                             </tr>
                             <tr>
                                 <td>Status:</td>
@@ -158,15 +172,17 @@
                         {% for related_anime in anime_data.related_anime %}
                         <tr>
                             <td>{{related_anime.relation_type_formatted}}:</td>
-                            <td><a href="id={{related_anime.node.id}}" id="relations-link">{{related_anime.node.title}}</a></td>
+                            <td><a href="id={{related_anime.node.id}}"
+                                    id="relations-link">{{related_anime.node.title}}</a></td>
                         </tr>
                         {% endfor %}
                     </table>
                     {% endif %}
                 </div>
             </div>
-        </div> 
+        </div>
     </center>
 </body>
-<script src={% static 'js/anime-view.js'%}></script>
+<script src={% static 'js/anime-view.js' %}></script>
+
 </html>

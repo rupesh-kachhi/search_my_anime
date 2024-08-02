@@ -24,19 +24,24 @@
 </head>
 
 <body>
-{% if name %}
-<h1>Welcome {{ message }}</h1>
-{% endif %}
+    {% if name %}
+    <h1>Welcome {{ message }}</h1>
+    {% endif %}
     <center>
         <div id="navbar">
-            <div>
+            <div style="display: flex;">
                 <a href={% url 'home' %}><span id="name-header"><span
                             style="color: #ffd166;">SearchMy</span>Anime</span></a>
                 <input id="input-box" placeholder="Search Anime">
                 <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div>
-                <button id="login-signup" >Login/Signup</button>
+                {% if displayName %}
+                <span id="dispName">{{ displayName }}</span>
+                <button id="logout" onclick="location.href='{% url 'lgout' %}'">Logout</button>
+                {% else %}
+                <button id="login-signup" onclick="location.href='{% url 'login' %}'">Login/Signup</button>
+                {% endif %}
             </div>
         </div>
         <div id="container">

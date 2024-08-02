@@ -55,9 +55,17 @@ def index(request):
         'airing_now_data': airing_now_data,
         'top_anime_data': top_anime_data,
         'popular_anime_data': popular_anime_data,
-        'anime_movie': anime_movie
+        'anime_movie': anime_movie,
         }
-    return render(request, 'index.html', context)
+    try:
+        id_token = request.session.get('uid')
+        user= fireAuth.get_account_info(id_token)
+        user_info = user['users'][0]
+        name = user_info['displayName'] 
+        context['displayName'] = name
+        return render(request, 'index.html', context)
+    except:
+        return render(request, 'index.html', context)
     
 
 def index_two(request, anime_id):
@@ -131,13 +139,18 @@ def index_two(request, anime_id):
         'season': season,
         'rating': rating,
     }
+    
+    
     try:
-        idToken = request.session['uid']
-        user= fireAuth.get_account_info(idToken)
-        name = database.child("users").child(user).child("details").child("name").get()
-    except:
+        id_token = request.session.get('uid')
+        user= fireAuth.get_account_info(id_token)
+        user_info = user['users'][0]
+        name = user_info['displayName'] 
+        context['displayName'] = name
         return render(request, 'anime-view.html', context)
-    return render(request, 'anime-view.html', context,{"name":name})
+    except:
+        print("not happened")
+        return render(request, 'anime-view.html', context)
 
 def index_three(request, search_query):
     from django.http import JsonResponse
@@ -156,27 +169,23 @@ def signup(request):
     return render(request,'account/signup.html')
 
 
-firebaseConfig = {
- "add you config":"here like this"
-}
-firebase = pyrebase.initialize_app(firebaseConfig)
-fireAuth = firebase.auth()
-database = firebase.database()     
-
 def postSignIn(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
     try:
         user = fireAuth.sign_in_with_email_and_password(email,password)
+        request.session['uid'] = user['idToken']
     except:
-        message = "invalid cred"
+        message = "Invalid credentials"
         return render(request,'account/login.html',{"message":message})
-    session_id = user['idToken']
-    request.session['uid']=str(session_id)
     return index(request)
 
 def logout(request):
     auth.logout
+    try:
+        del request.session['uid']
+    except KeyError:
+        pass
     return index(request)
 
 
@@ -186,11 +195,9 @@ def postSignUp(request):
     password = request.POST.get('password')
     try:
         user = fireAuth.create_user_with_email_and_password(email,password)
-        uid = user['localId']
-        data= {"name":name,"status":"1","date":datetime.now()}
-        database.child("users").child(uid).child("details").set(data)
-        fireAuth.send_email_verification(user['idToken'])
+        idtoken = user['idToken']
+        updatename = fireAuth.update_profile(idtoken, display_name=name)
     except:
         message = user
         return render(request,'account/signup.html',{"message":message})
-
+    return render(request,'account/login.html')
