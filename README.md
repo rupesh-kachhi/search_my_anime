@@ -45,7 +45,7 @@ To set up the project locally, follow these steps:
 
 2. **Signup Page**
 
-![alt text](screenshots/127.0.0.1_8000_signup_.png) !
+![alt text](screenshots/127.0.0.1_8000_signup_.png) 
 
 3. **Login Page**
  ![alt text](screenshots/127.0.0.1_8000_login_(1).png)
