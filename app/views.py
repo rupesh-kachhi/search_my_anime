@@ -7,7 +7,13 @@ import pyrebase
 from django.contrib import auth
 
 
-SECRET_KEY = settings.SECRET_KEY
+firebaseConfig =settings.FBCRED 
+firebase = pyrebase.initialize_app(firebaseConfig)
+fireAuth = firebase.auth()
+database = firebase.database()     
+
+
+SECRET_KEY = settings.APICRED
 def index(request):
     def get_season():
         month = datetime.now().month
