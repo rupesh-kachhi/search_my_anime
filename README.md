@@ -38,4 +38,19 @@ To set up the project locally, follow these steps:
    python manage.py runserver
 
 
+## ScreenShot
 
+1. **Before Login**
+![alt text](127.0.0.1_8000_.png)
+
+2. **Signup Page**
+
+![alt text](127.0.0.1_8000_signup_.png) !
+
+3. **Login Page**
+ ![alt text](<127.0.0.1_8000_login_ (1).png>)
+
+4. **After Login**
+![alt text](127.0.0.1_8000_postSignIn.png)
+
+# WIP Dockerization and deployement
