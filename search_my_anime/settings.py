@@ -21,16 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # import creds
-# SECRET_KEY = creds.SECRET_KEY
 import os
+# insert your django key
+SECRET_KEY = ''
 
-client_id = os.getenv('CLIENT_ID')
-SECRET_KEY = os.getenv('CLIENT_ID')
+#insert your api credential
+APICRED = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['']
 
 
 # Application definition
@@ -126,3 +127,7 @@ import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+FBCRED = {
+#   insert your firebase credentials
+}
