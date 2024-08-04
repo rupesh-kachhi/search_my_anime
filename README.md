@@ -25,4 +25,17 @@ To set up the project locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone
+   git clone git@github.com:rupesh-kachhi/search_my_anime.git
+
+2. **In root directory run this command it will install all the required packages**
+   ```bash
+   pip install -r requirements.txt
+
+3. **Insert MAL api cred for anime details loading and firebase cred for login and logout**
+
+4. **To run the app use below command**
+   ```bash
+   python manage.py runserver
+
+
+
