@@ -41,7 +41,7 @@ To set up the project locally, follow these steps:
 ## ScreenShot
 
 1. **Before Login**
-![alt text](screenshotd/127.0.0.1_8000_.png)
+![alt text](screenshots/127.0.0.1_8000_.png)
 
 2. **Signup Page**
 
